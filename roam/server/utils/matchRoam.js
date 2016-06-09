@@ -1,13 +1,15 @@
 'use strict'
 
-var apoc = require('apoc');
+const apoc = require('apoc');
 
-const createRoam = require('./createRoam')
+const startRoam = require('./startRoam')
 
 module.exports = (userInput, res) => {
 
-  const { coords, userEmail, dateMS } = userInput;
-
+  const { coords, email, dateMS } = userInput;
+  //FILE:
+  //getRoams(userInput, res)
+  //match user w/ an existing roam
   apoc.query('MATCH (m:Roam) \
       WHERE m.creatorRoamEnd > %currentDate% \
         AND m.status = "Pending" \
@@ -15,7 +17,7 @@ module.exports = (userInput, res) => {
         AND m.creatorLatitude > %minLat% \
         AND m.creatorLongitude < %maxLong% \
         AND m.creatorLongitude > %minLong% \
-        AND m.creatorEmail <> "%userEmail%" \
+        AND m.creatorEmail <> "%email%" \
         AND m.type = "%type%" RETURN m',
       {
         currentDate: dateMS,
@@ -23,7 +25,7 @@ module.exports = (userInput, res) => {
         minLat: coords.minLat,
         maxLong: coords.maxLong,
         minLong: coords.minLong,
-        userEmail: userEmail
+        email: email
         // type: type
   }).exec().then( (roamsList) => {
     //if matches, join nearest match
@@ -35,7 +37,7 @@ module.exports = (userInput, res) => {
     //else, create autoRoam
     } else {
       console.log('create an auto roam');
-      createRoam(userInput, res);
+      startRoam(userInput, res);
     }
   });
 

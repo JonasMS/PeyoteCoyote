@@ -19,7 +19,7 @@ module.exports = (data, res) => {
         if (err) {
           console.log('Error generating salt', err);
         }
-        bcrypt.hash(req.body.password, salt, function(err, hash) {
+        bcrypt.hash(data.password, salt, function(err, hash) {
           if (err) {
             console.log('Error hashing password', err);
           }
