@@ -4,8 +4,9 @@ var apoc = require('apoc');
 
 const createRoam = require('./createRoam')
 
-module.exports = (coords, times, userEmail, res) => {
-  let dateMS = Date.now();
+module.exports = (userInput, res) => {
+
+  const { coords, userEmail, dateMS } = userInput;
 
   apoc.query('MATCH (m:Roam) \
       WHERE m.creatorRoamEnd > %currentDate% \
@@ -34,7 +35,7 @@ module.exports = (coords, times, userEmail, res) => {
     //else, create autoRoam
     } else {
       console.log('create an auto roam');
-      createRoam(userEmail, coords, times, res);
+      createRoam(userInput, res);
     }
   });
 

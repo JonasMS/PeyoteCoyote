@@ -2,7 +2,9 @@ var apoc = require('apoc');
 var yelp = require('./api');
 
 
-module.exports = (userEmail, coords, times, res) => {
+module.exports = (userInput, res) => {
+
+  const { coords, userEmail, times } = userInput;
 
   console.log('line 7');
 

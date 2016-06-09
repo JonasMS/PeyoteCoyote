@@ -10,16 +10,25 @@ var roamOffGenerator = require('./roamOffGenerator');
 
 const matchRoam = require('./matchRoam');
 
-module.exports = (req, res) => {
+module.exports = (data, res) => {
 
-  let dateMS = Date.now();
-  let userEmail = req.body.userEmail;
-  let type = req.body.type;
-  // let {userEmail, type, hosted, host, description, price} = req.body;
-  let coords = boundingBoxGenerator(req); //bounding box coordinates
-  let times = roamOffGenerator(req); //time until roam ends
+  //TODO: use destructor
+  let userInput = {
+    dateMS: Date.now(),
+    email: data.userEmail,
+    type: data.type,
+    coords: boundingBoxGenerator(data),
+    times: roamOffGenerator(data)
+  };
 
-  matchRoam(coords, times, userEmail, res);
+  // let dateMS = Date.now();
+  // let userEmail = data.userEmail;
+  // let type = data.type;
+  // // let {userEmail, type, hosted, host, description, price} = data;
+  // let coords = boundingBoxGenerator(data); //bounding box coordinates
+  // let times = roamOffGenerator(data); //time until roam ends
+
+  matchRoam(userInput, res);
 
   // //Checks to make sure if there is an existing pending roam within similar location by a different user
   // apoc.query('MATCH \
