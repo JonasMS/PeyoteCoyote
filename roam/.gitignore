@@ -40,4 +40,5 @@ android/app/libs
 android/keystores/debug.keystore
 
 App/Utils/apiKeys.js
+Server/utils/apiKeys.js
 
