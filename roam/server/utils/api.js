@@ -9,11 +9,12 @@ let yelp = new Yelp({
   token: yelpKeys.token,
   token_secret: yelpKeys.token_secret
 });
-
 yelp.searchYelp = (searchPreferences, callback) => {
 
+console.log('yelp line 14');
   yelp.search(searchPreferences)
   .then((jsonData) => {
+    console.log('yelp res: ', jsonData.businesses);
     var randomIndex = Math.floor(Math.random() * jsonData.businesses.length);
     var chosen = jsonData.businesses[randomIndex];
     callback(chosen);

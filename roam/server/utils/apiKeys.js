@@ -1,8 +1,8 @@
 module.exports.yelpKeys = {
- consumer_key: 'nL1tq1wGRQcZEmjs8nGv-Q',
- consumer_secret: 'scVHofGDYuaZHw2uyAxcTa9eFrU',
- token: 'eT52dFcdRh7zzZiBkdMjEl5r9i6HwOw2',
- token_secret: 'ZIgut0qgOyxcb9XDughdf4V2CDg'
+  consumer_key: 'RO5L0YJkEKPyNP6QsBEQHg',
+  consumer_secret: '-zElTiR67QZia4NAafoRG2KzVKs',
+  token: 'xxoxBNwxB3CkOpPT_WZEsJSgaHhfE4lO',
+  token_secret: '8gHVc2MP6lNotPjra6QTbx-PQYA'
 };
 
 module.exports.gmailKeys = {
