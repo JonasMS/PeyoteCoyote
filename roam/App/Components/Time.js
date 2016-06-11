@@ -23,9 +23,9 @@ import {
 class Time extends Component {
   constructor(props) {
     super(props);
-    this.props.navigator.pop();      
+    this.props.navigator.pop();
     console.log(this.props.navigator.getCurrentRoutes())
-    this.props.navigator.pop();    
+    this.props.navigator.pop();
     console.log(this.props.navigator.getCurrentRoutes())
     this.state = {
       selectedOption: '1 hour',
@@ -47,7 +47,7 @@ class Time extends Component {
   handleSubmit() {
     //reformat time
 
-    let numHrs = this.state.selectedOption !== 'Anytime' 
+    let numHrs = this.state.selectedOption !== 'Anytime'
     ? this.state.selectedOption.split(' ')[0] : 6;
     let n = new Date();
     let availTime = n.setHours(n.getHours() + numHrs);
@@ -68,6 +68,7 @@ class Time extends Component {
         latitude: this.props.lat,
         longitude: this.props.lng,
         roamMode: 'roam',
+        date: Date.now(),
         time: availTime
       })
     })

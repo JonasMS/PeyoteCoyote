@@ -17,7 +17,10 @@ module.exports = (query) => {
 
   const coords = boundingBoxGenerator(latitude, longitude);
 
-  console.log('currentTime: ', Date.now());
+  const curTime = new Date();
+  const startTime = curTime.setHours(
+    curTime.getHours() - 0.5
+    );
 
   return apoc.query('MATCH (m:Roam) \
     WHERE m.creatorRoamStart > %currentDate% \
@@ -29,15 +32,12 @@ module.exports = (query) => {
       AND m.creatorEmail <> "%email%" \
       RETURN m',
     {
-      currentDate: Date.now(),
+      currentDate: startTime,
       maxLat: coords.maxLat,
       minLat: coords.minLat,
       maxLong: coords.maxLong,
       minLong: coords.minLong,
       email: email
-      // type: type
     }
   );
 }
-
-// AND m.type = "%type%" RETURN m

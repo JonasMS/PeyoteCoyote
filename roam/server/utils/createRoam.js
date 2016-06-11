@@ -1,31 +1,28 @@
-var apoc = require('apoc');
+'use strict'
 
-var roamOffGenerator = require('./roamOffGenerator');
+const apoc = require('apoc');
+
+const roamOffGenerator = require('./roamOffGenerator');
 
 //creates a roam node
-module.exports = (userInput, venue, res) => {
+module.exports = (userInput, venue) => {
 
   const {
     userEmail,
     title,
-    capacity,
     description,
     latitude,
     longitude,
-    date,
-    time,
-    type
-    // price
+    date, //start time
+    time, //duration
+    roamMode,
+    capacity,
+    price
   } = userInput;
 
   const { locName, address } = venue;
 
-  const endTime =
-  roamOffGenerator({ date, time });
-
-  console.log('endTime: ', endTime);
-
-  //TODO: use roam positions instead of creator positions
+  console.log(userInput);
 
   return apoc.query(
     'CREATE \
@@ -38,10 +35,11 @@ module.exports = (userInput, venue, res) => {
         status: "Pending", \
         venueName: "%venueName%", \
         venueAddress: "%venueAddress%", \
-        type: "%type%", \
+        roamMode: "%roamMode%", \
         title: "%title%", \
         description: "%description%", \
-        capacity: %capacity%\
+        capacity: %capacity%,\
+        price: %price%\
       }) \
       RETURN m',
       {
@@ -49,13 +47,13 @@ module.exports = (userInput, venue, res) => {
         latitude: latitude,
         longitude: longitude,
         startTime: date,
-        endTime: endTime,
+        endTime: time,
         venueName: locName,
         venueAddress: address,
-        type,
+        roamMode,
         title,
         description,
-        capacity
-        // price
+        capacity,
+        price
     });
 }
