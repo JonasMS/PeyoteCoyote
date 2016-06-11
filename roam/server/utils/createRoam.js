@@ -22,7 +22,12 @@ module.exports = (userInput, venue) => {
 
   const { locName, address } = venue;
 
+<<<<<<< 56c315f383dc4e1bbc84fee0922cc9be75a63db0
   console.log(userInput);
+=======
+  const endTime =
+  roamOffGenerator({ date, time });
+>>>>>>> REFAC - Comment Out / Remove Logs to Console
 
   return apoc.query(
     'CREATE \

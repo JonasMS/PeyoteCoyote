@@ -8,13 +8,13 @@ const getRoams = require('./getRoams');
 
 module.exports = (query, res) => {
 
-  console.log('getting all the group roams');
+  // console.log('getting all the group roams');
 
   getRoams(query)
   .exec()
   .then(function(roamsList) {
 
-    console.log('roamsList: ', roamsList[0].data);
+    // console.log('roamsList: ', roamsList[0].data);
 
     //if there are Pool/X roams, send them
     if (roamsList[0].data.length > 0) {

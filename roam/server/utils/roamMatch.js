@@ -15,7 +15,7 @@ module.exports = (userInput, res) => {
   .exec()
   .then( (roamsList) => {
 
-    console.log('roamList: ', roamsList[0].data);
+    // console.log('roamList: ', roamsList[0].data);
     //if there's a match, join the first match
     if (!!roamsList[0].data.length) {
 
@@ -25,14 +25,14 @@ module.exports = (userInput, res) => {
       joinRoam(userInput, id)
       .exec()
       .then( roam => {
-        console.log('roam: ', roam);
+        // console.log('roam: ', roam);
         res.send("Joined the roam");
       });
 
     //else, create autoRoam
     } else {
       userInput.isHost = true;
-      console.log('no roams');
+      // console.log('no roams');
 
       let searchParams = {
           term: 'Bars',
@@ -47,8 +47,6 @@ module.exports = (userInput, res) => {
         };
 
       yelp.searchYelp(searchParams, function(venue) {
-
-        console.log('venue name: ', venue.name);
 
         startRoam(
           userInput,
