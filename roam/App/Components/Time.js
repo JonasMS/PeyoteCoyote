@@ -60,7 +60,7 @@ class Time extends Component {
         userEmail: this.props.userEmail,
         latitude: this.props.lat,
         longitude: this.props.lng,
-        type: 'roam',
+        roamMode: 'roam',
         time: this.state.selectedOption
         // coordinates: this.state.coords,
         // userEmail: this.props.navigator.navigationContext._currentRoute.email
@@ -136,7 +136,7 @@ class Time extends Component {
             allowFontScaling={false}
             fontWeight={'bold'}
             onSelection={this.handleSelected.bind(this)}
-            selectedOption={this.state.selectedOption} 
+            selectedOption={this.state.selectedOption}
             />
           <TouchableHighlight
             style={styles.button}
