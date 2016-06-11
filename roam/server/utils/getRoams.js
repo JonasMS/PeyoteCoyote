@@ -10,9 +10,10 @@ module.exports = (query) => {
   // const curDate = Date.now();
 
   const {
+    userEmail,
+    roamMode,
     latitude,
     longitude,
-    email
   } = query;
 
   const coords = boundingBoxGenerator(latitude, longitude);
@@ -21,7 +22,6 @@ module.exports = (query) => {
   const startTime = curTime.setHours(
     curTime.getHours() - 0.5
     );
-
   return apoc.query('MATCH (m:Roam) \
     WHERE m.creatorRoamStart > %currentDate% \
       AND m.status = "Pending" \
@@ -37,7 +37,8 @@ module.exports = (query) => {
       minLat: coords.minLat,
       maxLong: coords.maxLong,
       minLong: coords.minLong,
-      email: email
+      email: userEmail,
+      roamMode
     }
   );
 }

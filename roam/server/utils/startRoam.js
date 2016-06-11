@@ -28,8 +28,6 @@ module.exports = (userInput, venue, res) => {
       console.log('error: ', err);
     });
     //update Attending?
-
-
-
   });
 }
+

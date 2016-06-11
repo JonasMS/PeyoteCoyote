@@ -9,7 +9,7 @@ const joinRoam = require('./joinRoam');
 
 module.exports = (userInput, res) => {
 
-  const { coords, email } = userInput;
+  const { coords } = userInput;
 
   getRoams(userInput)
   .exec()
@@ -47,6 +47,8 @@ module.exports = (userInput, res) => {
         };
 
       yelp.searchYelp(searchParams, function(venue) {
+
+        console.log('venue name: ', venue.name);
 
         startRoam(
           userInput,

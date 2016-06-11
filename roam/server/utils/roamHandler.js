@@ -12,18 +12,19 @@ const roamPool = require('./roamPool');
 
 module.exports = (data, res) => {
   // console.log('data: ', data);
+  console.log('data.roamMode: ', data.roamMode);
 
   data.coords = boundingBoxGenerator(data.latitude, data.longitude)
 
-  // console.log('data.roamMode: ', data.roamMode);
   if (data.roamMode === 'roam') {
-
     //match user w/ a roam or create an auto roam
     roamMatch(data, res);
 
-  } else {
-
+  } else if (data.roamMode === 'pool') {
     //connect user to roam or create specified roam
     roamPool(data, res);
+
+  } else {
+    console.log('bad roamMode given');
   }
 }
