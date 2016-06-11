@@ -18,8 +18,6 @@ module.exports = (query) => {
 
   const coords = boundingBoxGenerator(latitude, longitude);
 
-  console.log('roamMode: ', roamMode)
-
   return apoc.query('MATCH (m:Roam) \
     WHERE m.creatorRoamStart > %currentDate% \
       AND m.status = "Pending" \

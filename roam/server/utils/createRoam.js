@@ -22,12 +22,8 @@ module.exports = (userInput, venue) => {
 
   const { locName, address } = venue;
 
-  console.log('userInput: ', userInput);
-
   const endTime =
   roamOffGenerator({ date, time });
-
-  console.log('endTime: ', endTime);
 
   return apoc.query(
     'CREATE \

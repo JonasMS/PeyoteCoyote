@@ -35,7 +35,7 @@ module.exports = (userInput, res) => {
     joinRoam(userInput, userInput.roamId)
     .exec()
     .then( roam => {
-      console.log('roam: ', roam);
+      // console.log('roam: ', roam);
       res.send("Joined the roam");
     });
   }

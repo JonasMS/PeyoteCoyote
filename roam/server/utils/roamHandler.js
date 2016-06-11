@@ -12,7 +12,6 @@ const roamPool = require('./roamPool');
 
 module.exports = (data, res) => {
   // console.log('data: ', data);
-  console.log('data.roamMode: ', data.roamMode);
 
   data.coords = boundingBoxGenerator(data.latitude, data.longitude)
 
