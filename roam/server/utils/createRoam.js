@@ -14,8 +14,7 @@ module.exports = (userInput, venue, res) => {
     longitude,
     date,
     time,
-    isHost,
-    type,
+    type
     // price
   } = userInput;
 
@@ -40,9 +39,9 @@ module.exports = (userInput, venue, res) => {
         venueName: "%venueName%", \
         venueAddress: "%venueAddress%", \
         type: "%type%", \
-        isHost: %isHost%, \
         title: "%title%", \
-        description: "%description%" \
+        description: "%description%", \
+        capacity: %capacity%\
       }) \
       RETURN m',
       {
@@ -54,9 +53,9 @@ module.exports = (userInput, venue, res) => {
         venueName: locName,
         venueAddress: address,
         type,
-        isHost,
         title,
-        description
+        description,
+        capacity
         // price
     });
 }

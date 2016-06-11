@@ -1,18 +1,23 @@
 'use strict'
 
 const apoc = require('apoc');
+const boundingBoxGenerator = require('./boundingBoxGenerator');
+
 
 //get list of roams w/in a specified distance
 //from the user
-module.exports = (userInput) => {
-  const curDate = Date.now();
+module.exports = (query) => {
+  // const curDate = Date.now();
 
   const {
-    coords,
+    latitude,
+    longitude,
     email
-  } = userInput;
+  } = query;
 
-  console.log('before getRoams query');
+  const coords = boundingBoxGenerator(latitude, longitude);
+
+  console.log('currentTime: ', Date.now());
 
   return apoc.query('MATCH (m:Roam) \
     WHERE m.creatorRoamStart > %currentDate% \
@@ -24,7 +29,7 @@ module.exports = (userInput) => {
       AND m.creatorEmail <> "%email%" \
       RETURN m',
     {
-      currentDate: curDate,
+      currentDate: Date.now(),
       maxLat: coords.maxLat,
       minLat: coords.minLat,
       maxLong: coords.maxLong,
