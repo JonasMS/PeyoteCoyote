@@ -11,26 +11,25 @@ module.exports = (userInput, venue, res) => {
 
   console.log('startRoam');
   //create a roam (node)
-  createRoam(userInput, venue, res)
+  createRoam(userInput, venue)
   .exec()
   .then(function(queryRes) {
 
     let { id } = queryRes[0].data[0].meta[0];
-    //join (relationship) user (node) to just created roam (node)
-    //authorizeJoin
-    authorizeJoin(id)
+    //join (relationship) user (node)
+    // to just created roam (node)
+    console.log('id: ', id);
+    joinRoam(userInput, id)
     .exec()
-    .then( (result) => {
-      console.log('result: ', result);
-      joinRoam(userInput, id)
-      .exec()
-      .then( (roam) => {
-        console.log('roam: ', roam);
-        res.send("Joined the roam");
-      }, err => {
-        console.log('error: ', err);
-      });
-    //updateAttending
+    .then( (roam) => {
+      console.log('roam: ', roam);
+      res.send("Joined the roam");
+    }, err => {
+      console.log('error: ', err);
     });
+    //update Attending?
+
+
+
   });
 }
