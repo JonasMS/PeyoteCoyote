@@ -66,8 +66,10 @@ handleSubmit () {
   let tm = this.props.time || df.formatTime(this, 'date');
   let dt = Date.parse(ds + ' ' + tm);
   let eD = this.props.endDate;
-  let eTm = this.props.endTime; 
+  let eTm = this.props.endTime;
   let eDt = Date.parse(eD + ' ' + eTm)
+
+  console.log('time: ', eDt);
   //create the object
   let options = {
       userEmail: this.props.userEmail,
@@ -121,7 +123,7 @@ onBlur () {
           <View style={defaultStyles.hostContainer}>
             <Text style={defaultStyles.header}>Host a roam</Text>
             <TextInput
-                style={defaultStyles.submit} 
+                style={defaultStyles.submit}
                 autoCapitalize="none"
                 placeholder={this.props.titleText ? this.props.titleText : "Enter Event Title"}
                 placeholderTextColor="white"
@@ -132,12 +134,12 @@ onBlur () {
               <View style={defaultStyles.dateViewBox}>
                 <View>
                   <Text style={defaultStyles.dateViewLabel}>Roam Start:</Text>
-                </View> 
+                </View>
                 <View>
-                  <Text style={defaultStyles.dateViewTime}>{this.props.date 
-                    ? this.props.date 
-                    : df.formatDate(this, 'date')} {this.props.time 
-                      ? this.props.time 
+                  <Text style={defaultStyles.dateViewTime}>{this.props.date
+                    ? this.props.date
+                    : df.formatDate(this, 'date')} {this.props.time
+                      ? this.props.time
                       : df.formatTime(this, 'date')}
                       </Text>
                 </View>
@@ -148,11 +150,11 @@ onBlur () {
               <View style={defaultStyles.dateViewBox}>
                 <View>
                   <Text style={defaultStyles.dateViewLabel}>Roam End:</Text>
-                </View> 
+                </View>
                 <View>
-                  <Text style={[defaultStyles.dateViewTime, styles.dateRight]}>{this.props.date 
+                  <Text style={[defaultStyles.dateViewTime, styles.dateRight]}>{this.props.date
                     ? this.props.endDate
-                    : df.formatDate(this, 'endTime')} {this.props.time 
+                    : df.formatDate(this, 'endTime')} {this.props.time
                     ? this.props.endTime
                     : df.formatTime(this, 'endTime')}
                     </Text>
@@ -172,9 +174,9 @@ onBlur () {
               </View>
           </TouchableHighlight>
           <View>
-          <View style={defaultStyles.smallSubContainer}> 
+          <View style={defaultStyles.smallSubContainer}>
              <TextInput
-                style={defaultStyles.smallSubmit} 
+                style={defaultStyles.smallSubmit}
                 autoCapitalize="none"
                 placeholder={this.props.price ? this.props.price : '$ Cost'}
                 placeholderTextColor='white'
@@ -182,7 +184,7 @@ onBlur () {
                 onChangeText={(text) => this.setState({price: text})}
               />
              <TextInput
-                style={[defaultStyles.smallSubmit, styles.capacity]} 
+                style={[defaultStyles.smallSubmit, styles.capacity]}
                 autoCapitalize="none"
                 placeholder={this.props.capacity ? this.props.capacity : 'Capacity'}
                 placeholderTextColor='white'

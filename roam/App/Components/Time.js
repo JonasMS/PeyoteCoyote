@@ -70,6 +70,9 @@ class Time extends Component {
         roamMode: 'roam',
         date: Date.now(),
         time: availTime
+        time: this.state.selectedOption
+        // coordinates: this.state.coords,
+        // userEmail: this.props.navigator.navigationContext._currentRoute.email
       })
     })
     .then((res) => {
@@ -103,6 +106,7 @@ class Time extends Component {
     return (
       <Image style={styles.backgroundImage}
       source={require('../../imgs/uni.jpg')} >
+<<<<<<< 05d8d5531908c763c667a4cc30874c114bed50a0
         <Geolocation onChangeCoords = {this.changeCoords.bind(this)} />
         <Text style={styles.header}> pick a time: </Text>
         <SegmentedControls
@@ -120,6 +124,28 @@ class Time extends Component {
           onPress={this.handleSubmit.bind(this)} >
             <Text style={styles.buttonText}> Roam! </Text>
         </TouchableHighlight>
+=======
+        <View style={styles.container} >
+          <Text style={styles.location}>Your Current Location:</Text>
+          <Geolocation onChangeCoords = {this.changeCoords.bind(this)} />
+          <Text style={styles.header}> pick time : </Text>
+          <SegmentedControls
+            tint={'#ff0066'}
+            selectedTint={'white'}
+            backTint={'white'}
+            options={options}
+            allowFontScaling={false}
+            fontWeight={'bold'}
+            onSelection={this.handleSelected.bind(this)}
+            selectedOption={this.state.selectedOption}
+            />
+          <TouchableHighlight
+            style={styles.button}
+            onPress={this.handleSubmit.bind(this)} >
+              <Text style={styles.buttonText}> Roam! </Text>
+          </TouchableHighlight>
+        </View>
+>>>>>>> DEBUG - Fix POST Requests Made to Server
       </Image>
     );
   }
